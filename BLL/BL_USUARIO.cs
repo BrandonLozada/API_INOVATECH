@@ -8,6 +8,7 @@ using DAL;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
+using Models.DTO;
 
 namespace BLL
 {
