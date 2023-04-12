@@ -24,7 +24,7 @@ namespace BLL
                 P_Accion = 1
             };
 
-            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spConsultaUsuario", dpParametros);
+            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spConsultarUsuario", dpParametros);
 
 
             if (Dt.Rows.Count > 0)
@@ -56,7 +56,7 @@ namespace BLL
                 P_NombreC = P_Letras
             };
 
-            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spConsultaUsuario", dpParametros);
+            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spConsultarUsuario", dpParametros);
 
 
             if (Dt.Rows.Count > 0)
@@ -91,10 +91,9 @@ namespace BLL
                     P_IdRol = P_IdRolE
                 };
 
-                Contexto.Procedimiento_StoreDB(P_Cadena, "spAltaUsuario", dpParametros);
+                Contexto.Procedimiento_StoreDB(P_Cadena, "spCrearUsuario", dpParametros);
                 lstMensaje.Add("00"); // TODO: ¿Por qué es "00"?
                 lstMensaje.Add("Información Guardada");
-
             }
             catch (SqlException e)
             {
