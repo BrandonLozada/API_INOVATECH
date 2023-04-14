@@ -35,7 +35,7 @@ namespace BLL
             }
             catch (SqlException e)
             {
-                lstMensaje.Add("14"); // TODO: ¿Por qué es "14"?
+                lstMensaje.Add("14");
                 lstMensaje.Add(e.Message);
             }
 
