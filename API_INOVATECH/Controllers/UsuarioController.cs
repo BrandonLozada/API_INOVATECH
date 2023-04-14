@@ -38,7 +38,7 @@ namespace API_INOVATECH.Controllers
         [Route("GuardarUsuario")]
         public IActionResult GuardarUsuario([FromBody] UsuarioDTO Usuario)
         {
-            List<string> lstDatos = BL_USUARIO.InsertarUsuario(Cadena, Usuario.correo, Usuario.contrasenia, Usuario.es_activo, Usuario.id_rol);
+            List<string> lstDatos = BL_USUARIO.InsertarUsuario(Cadena, Usuario.nombre, Usuario.primer_apellido, Usuario.segundo_apellido, Usuario.fecha_nacimiento, Usuario.sexo, Usuario.celular, Usuario.correo, Usuario.contrasenia, Usuario.es_activo, Usuario.id_rol);
 
             if (lstDatos[0] == "00")
             {

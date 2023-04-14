@@ -77,16 +77,21 @@ namespace BLL
             return lstUsuarioRep;
         }
 
-        public static List<string> InsertarUsuario(string P_Cadena, string P_CorreoE, string P_ContraseniaE, int P_EsActivoE, int P_IdRolE)
+        public static List<string> InsertarUsuario(string P_Cadena, string P_NombreE, string P_PrimerApellidoE, string P_SegundoApellidoE, string P_FechaNacimientoE, string P_SexoE, string P_CelularE, string P_CorreoE, string P_ContraseniaE, int P_EsActivoE, int P_IdRolE)
         {
             List<string> lstMensaje = new List<string>();
             try
             {
                 var dpParametros = new
                 {
-                    P_Correo = P_CorreoE,
+                    P_Nombre = P_NombreE,
+                    P_PrimerApellido = P_PrimerApellidoE,
+                    P_SegundoApellido = P_SegundoApellidoE,
+                    P_FechaNacimiento = P_FechaNacimientoE,
+                    P_Sexo = P_SexoE,
+                    P_Celular  = P_CelularE,
+                    P_Correo = P_CorreoE, // TODO: Investigar una funcionalidad de autenticación de dos factores para la API de Twilio.
                     P_Contrasenia = P_ContraseniaE,
-                    //P_Celular = P_CelularE, // TODO: En caso de requerir el celular para la API de Twilio.
                     P_EsActivo = P_EsActivoE,
                     P_IdRol = P_IdRolE
                 };
@@ -97,7 +102,7 @@ namespace BLL
             }
             catch (SqlException e)
             {
-                lstMensaje.Add("14"); // TODO: ¿Por qué es "14"?
+                lstMensaje.Add("14");
                 lstMensaje.Add(e.Message);
             }
 
