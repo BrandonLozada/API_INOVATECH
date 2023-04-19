@@ -20,7 +20,7 @@ namespace API_INOVATECH.Controllers
         [Route("ListarTodo")]
         public IActionResult ListarTodo()
         {
-            List<UsuarioRepDTO> lstUsuarioRep = BL_USUARIO.ConsultaTodo(Cadena);
+            List<UsuarioDTO> lstUsuarioRep = BL_USUARIO.ConsultaTodo(Cadena);
 
             return Ok(new { Value = lstUsuarioRep });
         }

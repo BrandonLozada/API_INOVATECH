@@ -14,9 +14,9 @@ namespace BLL
 {
     public class BL_USUARIO
     {
-        public static List<UsuarioRepDTO> ConsultaTodo(string P_Cadena)
+        public static List<UsuarioDTO> ConsultaTodo(string P_Cadena)
         {
-            List<UsuarioRepDTO> lstUsuarioRep = new List<UsuarioRepDTO>();
+            List<UsuarioDTO> lstUsuarioRep = new List<UsuarioDTO>();
             DataTable Dt = new DataTable();
 
             var dpParametros = new
@@ -30,14 +30,20 @@ namespace BLL
             if (Dt.Rows.Count > 0)
             {
                 lstUsuarioRep = (from item in Dt.AsEnumerable()
-                                 select new UsuarioRepDTO
+                                 select new UsuarioDTO
                                  {
                                      id_usuario = item.Field<int>("id_usuario"),
-                                     nombre_completo = item.Field<string>("nombre_completo"),
+                                     nombre = item.Field<string>("nombre"),
+                                     primer_apellido = item.Field<string>("primer_apellido"),
+                                     segundo_apellido = item.Field<string>("segundo_apellido"),
+                                     fecha_nacimiento = Convert.ToString(item.Field<DateTime>("fecha_nacimiento")),
+                                     sexo = item.Field<string>("sexo"),
+                                     celular = item.Field<string>("celular"),
                                      correo = item.Field<string>("correo"),
-                                     rol = item.Field<string>("rol"),
-                                     activo = item.Field<string>("activo"),
-                                     fecha_registro = item.Field<string>("fecha_registro")
+                                     contrasenia = item.Field<string>("contrasenia"),
+                                     es_activo = Convert.ToInt32(item.Field<bool>("es_activo")),
+                                     id_rol = item.Field<int>("id_rol"),
+                                     fecha_registro = Convert.ToString(item.Field<DateTime>("fecha_registro"))
                                  }
                                ).ToList();
             }

@@ -8,6 +8,7 @@ namespace Models.DTO
 {
     public class UsuarioDTO
     {
+        public int id_usuario { get; set; }
         public string nombre { get; set; }
         public string primer_apellido { get; set; }
         public string segundo_apellido { get; set; }
@@ -18,5 +19,6 @@ namespace Models.DTO
         public string contrasenia { get; set; }
         public int es_activo { get; set; }
         public int id_rol { get; set; }
+        public string fecha_registro { get; set; }
     }
 }
