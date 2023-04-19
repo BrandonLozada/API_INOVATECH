@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Models.DTO
 {
     public class UsuarioDTO
+        //Agregar otro DTO para obtener toda la info o dejarlo asi?
     {
         public int id_usuario { get; set; }
         public string nombre { get; set; }
