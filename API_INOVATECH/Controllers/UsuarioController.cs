@@ -26,6 +26,15 @@ namespace API_INOVATECH.Controllers
         }
 
         [HttpGet]
+        [Route("ListarUsuario")]
+        public IActionResult ListarUsuario()
+        {
+            List<UsuarioRepDTO> lstUsuarioRep = BL_USUARIO.ConsultaGeneral(Cadena);
+
+            return Ok(new { Value = lstUsuarioRep });
+        }
+
+        [HttpGet]
         [Route("ListarNombre/{Nombre}")]
         public IActionResult ListarNombre(string Nombre)
         {
@@ -36,9 +45,26 @@ namespace API_INOVATECH.Controllers
 
         [HttpPost]
         [Route("GuardarUsuario")]
-        public IActionResult GuardarUsuario([FromBody] UsuarioDTO Usuario)
+        public IActionResult GuardarUsuario([FromBody] UsuarioGenDTO Usuario)
         {
             List<string> lstDatos = BL_USUARIO.InsertarUsuario(Cadena, Usuario.nombre, Usuario.primer_apellido, Usuario.segundo_apellido, Usuario.fecha_nacimiento, Usuario.sexo, Usuario.celular, Usuario.correo, Usuario.contrasenia, Usuario.es_activo, Usuario.id_rol);
+
+            if (lstDatos[0] == "00")
+            {
+                return Ok(new { Value = lstDatos[1] });
+            }
+            else
+            {
+                return BadRequest(new { Value = lstDatos[1] });
+            }
+
+        }
+
+        [HttpPost]
+        [Route("ActualizarUsuario/{IdUsuario}")]
+        public IActionResult ActualizarUsuario(int IdUsuario, [FromBody] UsuarioGenDTO Usuario)
+        {
+            List<string> lstDatos = BL_USUARIO.ActualizarUsuario(Cadena, IdUsuario, Usuario.nombre, Usuario.primer_apellido, Usuario.segundo_apellido, Usuario.fecha_nacimiento, Usuario.sexo, Usuario.celular, Usuario.correo, Usuario.contrasenia, Usuario.es_activo, Usuario.id_rol);
 
             if (lstDatos[0] == "00")
             {

@@ -6,9 +6,5 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
 	
 </Project>
