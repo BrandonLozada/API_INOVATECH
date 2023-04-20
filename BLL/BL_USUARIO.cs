@@ -159,8 +159,8 @@ namespace BLL
                     P_AMaterno = P_SegundoApellidoE,
                     P_FecNac = P_FechaNacimientoE,
                     P_Sexo = P_SexoE,
-                    P_Celular = P_CorreoE,
-                    P_Correo = P_CelularE,
+                    P_Correo = P_CorreoE,
+                    P_Celular = P_CelularE,
                     P_Contrasenia = P_ContraseniaE,
                     P_IdRol = P_IdRolE,
                     P_EsActivo = P_EsActivoE
@@ -180,5 +180,31 @@ namespace BLL
 
             return lstMensaje;
         }
+
+        public static List<string> EliminarUsuario(string P_Cadena, int P_idUsuarioE)
+        {
+            List<string> lstMensaje = new List<string>();
+            try
+            {
+                var dpParametros = new
+                {
+                    P_IdUsuario = P_idUsuarioE
+                };
+
+                Contexto.Procedimiento_StoreDB(P_Cadena, "spEliminarUsuario", dpParametros);
+                lstMensaje.Add("00");
+                lstMensaje.Add("Usuario Eliminado");
+
+
+            }
+            catch (SqlException e)
+            {
+                lstMensaje.Add("14");
+                lstMensaje.Add(e.Message);
+            }
+
+            return lstMensaje;
+        }
+
     }
 }
