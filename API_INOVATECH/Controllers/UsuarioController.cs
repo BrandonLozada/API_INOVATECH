@@ -16,6 +16,15 @@ namespace API_INOVATECH.Controllers
             Cadena = Config.GetConnectionString("PROD");
         }
 
+        [HttpGet]
+        [Route("ListarPerfil/{IdUsuario}")]
+        public IActionResult ListarPerfil(int IdUsuario)
+        {
+            List<UsuarioBioDTO> lstUsuarioRep = BL_USUARIO.ConsultaPerfil(Cadena, IdUsuario);
+
+            return Ok(new { Value = lstUsuarioRep });
+        }
+
         // TODO: Corregir este EndPoint, verificar la finalidad para Front.
         [HttpGet]
         [Route("ListarTodo")]

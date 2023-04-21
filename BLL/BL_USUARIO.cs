@@ -14,6 +14,36 @@ namespace BLL
 {
     public class BL_USUARIO
     {
+        public static List<UsuarioBioDTO> ConsultaPerfil(string P_Cadena, int IdUsuario)
+        {
+            List<UsuarioBioDTO> lstUsuarioRep = new List<UsuarioBioDTO>();
+            DataTable Dt = new DataTable();
+
+            var dpParametros = new
+            {
+                P_IdUsuario = IdUsuario
+            };
+
+            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spVistaUsuario", dpParametros);
+
+
+            if (Dt.Rows.Count > 0)
+            {
+                lstUsuarioRep = (from item in Dt.AsEnumerable()
+                                 select new UsuarioBioDTO
+                                 {
+                                     id_usuario = item.Field<int>("id_usuario"),
+                                     nombre_completo = item.Field<string>("nombre_completo"),
+                                     fecha_nacimiento = Convert.ToString(item.Field<DateTime>("fecha_nacimiento")),
+                                     sexo = item.Field<string>("sexo"),
+                                     celular = item.Field<string>("celular"),
+                                     correo = item.Field<string>("correo")
+                                 }
+                               ).ToList();
+            }
+
+            return lstUsuarioRep;
+        }
         public static List<UsuarioGenDTO> ConsultaTodo(string P_Cadena)
         {
             List<UsuarioGenDTO> lstUsuarioRep = new List<UsuarioGenDTO>();
