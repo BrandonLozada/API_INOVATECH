@@ -155,9 +155,9 @@ namespace BLL
                 {
                     P_IdUsuario = P_idUsuarioE,
                     P_Nombre = P_NombreE,
-                    P_APaterno = P_PrimerApellidoE,
-                    P_AMaterno = P_SegundoApellidoE,
-                    P_FecNac = P_FechaNacimientoE,
+                    P_PrimerApellido = P_PrimerApellidoE,
+                    P_SegundoApellido = P_SegundoApellidoE,
+                    P_FechaNacimiento = P_FechaNacimientoE,
                     P_Sexo = P_SexoE,
                     P_Correo = P_CorreoE,
                     P_Celular = P_CelularE,
