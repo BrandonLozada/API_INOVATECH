@@ -27,4 +27,12 @@ namespace Models.DTO
         public string correo { get; set; }
         public string contrasenia { get; set; }
     }
+
+    public class PerfilEmpleadoBioDTO {
+        public int id_usuario { get; set; }
+        public string nomina { get; set; }
+        public string fecha_ingreso { get; set; }
+        public string nombre_puesto { get; set; }
+        public string nombre_departamento { get; set; }
+    }
 }

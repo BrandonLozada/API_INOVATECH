@@ -31,5 +31,14 @@ namespace API_INOVATECH.Controllers
                 return BadRequest(new { Value = lstDatos[1] });
             }
         }
+
+        [HttpGet]
+        [Route("ListarPerfilEmpleado/{IdUsuario}")]
+        public IActionResult ListarPerfilEmpleado(int IdUsuario)
+        {
+            List<PerfilEmpleadoBioDTO> lstPerfilEmpleado = BL_PERFIL_EMPLEADO.ConsultaPerfilEmpleado(Cadena, IdUsuario);
+
+            return Ok(new { Value = lstPerfilEmpleado });
+        }
     }
 }

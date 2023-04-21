@@ -41,5 +41,36 @@ namespace BLL
 
             return lstMensaje;
         }
+
+        public static List<PerfilEmpleadoBioDTO> ConsultaPerfilEmpleado(string P_Cadena, int IdUsuario)
+        {
+            List<PerfilEmpleadoBioDTO> lstPerfilEmpleado = new List<PerfilEmpleadoBioDTO>();
+            DataTable Dt = new DataTable();
+
+            var dpParametros = new
+            {
+                P_IdUsuario = IdUsuario
+            };
+
+            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spVistaPerfilEmpleado", dpParametros);
+
+
+            if (Dt.Rows.Count > 0)
+            {
+                lstPerfilEmpleado = (from item in Dt.AsEnumerable()
+                                 select new PerfilEmpleadoBioDTO
+                                 {
+                                     id_usuario = item.Field<int>("id_usuario"),
+                                     nomina = item.Field<string>("nomina"),
+                                     fecha_ingreso = Convert.ToString(item.Field<DateTime>("fecha_ingreso")),
+                                     nombre_puesto = item.Field<string>("puesto"),
+                                     nombre_departamento = item.Field<string>("departamento"),
+                                     
+                                 }
+                               ).ToList();
+            }
+
+            return lstPerfilEmpleado;
+        }
     }
 }
