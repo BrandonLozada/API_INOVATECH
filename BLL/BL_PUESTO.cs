@@ -21,7 +21,7 @@ namespace BLL
 
             var dpParametros = new
             {
-                P_Accion = 1
+                
             };
 
             Dt = Contexto.Funcion_StoreDB(P_Cadena, "spPuestos", dpParametros);

@@ -77,5 +77,22 @@ namespace API_INOVATECH.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("EliminarUsuario/{IdUsuario}")]
+        public IActionResult EliminarUsuario(int IdUsuario)
+        {
+            List<string> lstDatos = BL_USUARIO.EliminarUsuario(Cadena, IdUsuario);
+
+            if (lstDatos[0] == "00")
+            {
+                return Ok(new { Value = lstDatos[1] });
+            }
+            else
+            {
+                return BadRequest(new { Value = lstDatos[1] });
+            }
+
+        }
     }
 }
