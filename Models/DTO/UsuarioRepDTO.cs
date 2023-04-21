@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Models.DTO
 {
-    public class UsuarioRepDTO
-    {
-        public int id_usuario { get; set; }
-        public string nombre_completo { get; set; }
-        public string correo { get; set; }
-        public string rol { get; set; }
-        public string activo { get; set; }
-        public string fecha_registro { get; set; }
-    }
+    //public class UsuarioRepDTO
+    //{
+    //    public int id_usuario { get; set; }
+    //    public string nombre_completo { get; set; }
+    //    public string correo { get; set; }
+    //    public string rol { get; set; }
+    //    public string activo { get; set; }
+    //    public string fecha_registro { get; set; }
+    //}
 
     //public class UsuarioRepDTO2
     //{
