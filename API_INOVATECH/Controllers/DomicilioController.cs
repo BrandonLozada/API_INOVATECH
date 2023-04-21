@@ -31,5 +31,14 @@ namespace API_INOVATECH.Controllers
                 return BadRequest(new { Value = lstDatos[1] });
             }
         }
+
+        [HttpGet]
+        [Route("ListarDomicilio/{IdUsuario}")]
+        public IActionResult ListarDomicilio(int IdUsuario)
+        {
+            List<DomicilioRepDTO> lstDomicilioRep = BL_DOMICILIO.ConsultaDomicilio(Cadena, IdUsuario);
+
+            return Ok(new { Value = lstDomicilioRep });
+        }
     }
 }

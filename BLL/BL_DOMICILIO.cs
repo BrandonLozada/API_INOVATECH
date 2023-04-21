@@ -46,5 +46,41 @@ namespace BLL
 
             return lstMensaje;
         }
+
+        public static List<DomicilioRepDTO> ConsultaDomicilio(string P_Cadena, int IdUsuario)
+        {
+            List<DomicilioRepDTO> lstDomicilioRep = new List<DomicilioRepDTO>();
+            DataTable Dt = new DataTable();
+
+            var dpParametros = new
+            {
+                P_IdUsuario = IdUsuario
+            };
+
+            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spVistaDomicilio", dpParametros);
+
+
+            if (Dt.Rows.Count > 0)
+            {
+                lstDomicilioRep = (from item in Dt.AsEnumerable()
+                                 select new DomicilioRepDTO
+                                 {
+                                     id_usuario = item.Field<int>("id_usuario"),
+                                     calle = item.Field<string>("calle"),
+                                     numero_interior = item.Field<string>("numero_interior"),
+                                     numero_exterior = item.Field<string>("numero_exterior"),
+                                     entre_calles_1 = item.Field<string>("entre_calles_1"),
+                                     entre_calles_2 = item.Field<string>("entre_calles_2"),
+                                     codigo_postal = item.Field<string>("codigo_postal"),
+                                     colonia = item.Field<string>("colonia"),
+                                     ciudad = item.Field<string>("ciudad"),
+                                     estado = item.Field<string>("estado"),
+                                     pais = item.Field<string>("pais")
+                                 }
+                               ).ToList();
+            }
+
+            return lstDomicilioRep;
+        }
     }
 }
