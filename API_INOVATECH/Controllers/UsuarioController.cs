@@ -61,7 +61,7 @@ namespace API_INOVATECH.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("ActualizarUsuario/{IdUsuario}")]
         public IActionResult ActualizarUsuario(int IdUsuario, [FromBody] UsuarioDTO Usuario)
         {
@@ -78,6 +78,7 @@ namespace API_INOVATECH.Controllers
 
         }
 
+        //Checar el Post y cambiar para que solo sea una baja logica
         [HttpPost]
         [Route("EliminarUsuario/{IdUsuario}")]
         public IActionResult EliminarUsuario(int IdUsuario)
