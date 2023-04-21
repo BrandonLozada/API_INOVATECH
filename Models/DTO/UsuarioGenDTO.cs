@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.DTO {
     public class UsuarioGenDTO {
+        //Falta validar si sera usada del todo junto al EndPoint
         public int id_usuario { get; set; }
         public string nombre { get; set; }
         public string primer_apellido { get; set; }
