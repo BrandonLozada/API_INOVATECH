@@ -16,6 +16,7 @@ namespace API_INOVATECH.Controllers
             Cadena = Config.GetConnectionString("PROD");
         }
 
+        // TODO: Corregir este EndPoint, verificar la finalidad para Front.
         [HttpGet]
         [Route("ListarTodo")]
         public IActionResult ListarTodo()
