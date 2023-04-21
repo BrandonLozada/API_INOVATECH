@@ -21,7 +21,7 @@ namespace API_INOVATECH.Controllers
         [Route("ListarTodo")]
         public IActionResult ListarTodo()
         {
-            List<UsuarioDTO> lstUsuarioRep = BL_USUARIO.ConsultaTodo(Cadena);
+            List<UsuarioGenDTO> lstUsuarioRep = BL_USUARIO.ConsultaTodo(Cadena);
 
             return Ok(new { Value = lstUsuarioRep });
         }
@@ -46,7 +46,7 @@ namespace API_INOVATECH.Controllers
 
         [HttpPost]
         [Route("GuardarUsuario")]
-        public IActionResult GuardarUsuario([FromBody] UsuarioGenDTO Usuario)
+        public IActionResult GuardarUsuario([FromBody] UsuarioDTO Usuario)
         {
             List<string> lstDatos = BL_USUARIO.InsertarUsuario(Cadena, Usuario.nombre, Usuario.primer_apellido, Usuario.segundo_apellido, Usuario.fecha_nacimiento, Usuario.sexo, Usuario.celular, Usuario.correo, Usuario.contrasenia, Usuario.es_activo, Usuario.id_rol);
 
@@ -63,7 +63,7 @@ namespace API_INOVATECH.Controllers
 
         [HttpPost]
         [Route("ActualizarUsuario/{IdUsuario}")]
-        public IActionResult ActualizarUsuario(int IdUsuario, [FromBody] UsuarioGenDTO Usuario)
+        public IActionResult ActualizarUsuario(int IdUsuario, [FromBody] UsuarioDTO Usuario)
         {
             List<string> lstDatos = BL_USUARIO.ActualizarUsuario(Cadena, IdUsuario, Usuario.nombre, Usuario.primer_apellido, Usuario.segundo_apellido, Usuario.fecha_nacimiento, Usuario.sexo, Usuario.celular, Usuario.correo, Usuario.contrasenia, Usuario.es_activo, Usuario.id_rol);
 

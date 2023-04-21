@@ -14,9 +14,9 @@ namespace BLL
 {
     public class BL_USUARIO
     {
-        public static List<UsuarioDTO> ConsultaTodo(string P_Cadena)
+        public static List<UsuarioGenDTO> ConsultaTodo(string P_Cadena)
         {
-            List<UsuarioDTO> lstUsuarioRep = new List<UsuarioDTO>();
+            List<UsuarioGenDTO> lstUsuarioRep = new List<UsuarioGenDTO>();
             DataTable Dt = new DataTable();
 
             var dpParametros = new
@@ -30,7 +30,7 @@ namespace BLL
             if (Dt.Rows.Count > 0)
             {
                 lstUsuarioRep = (from item in Dt.AsEnumerable()
-                                 select new UsuarioDTO
+                                 select new UsuarioGenDTO
                                  {
                                      id_usuario = item.Field<int>("id_usuario"),
                                      nombre = item.Field<string>("nombre"),
@@ -41,7 +41,7 @@ namespace BLL
                                      celular = item.Field<string>("celular"),
                                      correo = item.Field<string>("correo"),
                                      contrasenia = item.Field<string>("contrasenia"),
-                                     nombre_rol = item.Field<string>("nombre_rol"),
+                                     nombre_rol = item.Field<string>("rol"),
                                      es_activo = item.Field<string>("activo"),
                                      fecha_registro = item.Field<string>("fecha_registro")
                                  }
