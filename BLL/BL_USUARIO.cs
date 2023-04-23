@@ -34,7 +34,7 @@ namespace BLL
                                  {
                                      id_usuario = item.Field<int>("id_usuario"),
                                      nombre_completo = item.Field<string>("nombre_completo"),
-                                     fecha_nacimiento = Convert.ToString(item.Field<DateTime>("fecha_nacimiento")),
+                                     fecha_nacimiento = item.Field<DateTime>("fecha_nacimiento").ToString("yyyy/MM/dd"),
                                      sexo = item.Field<string>("sexo"),
                                      celular = item.Field<string>("celular"),
                                      correo = item.Field<string>("correo")
