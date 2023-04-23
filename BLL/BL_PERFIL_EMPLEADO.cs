@@ -62,10 +62,9 @@ namespace BLL
                                  {
                                      id_usuario = item.Field<int>("id_usuario"),
                                      nomina = item.Field<string>("nomina"),
-                                     fecha_ingreso = Convert.ToString(item.Field<DateTime>("fecha_ingreso")),
-                                     nombre_puesto = item.Field<string>("puesto"),
-                                     nombre_departamento = item.Field<string>("departamento"),
-                                     
+                                     fecha_ingreso = item.Field<DateTime>("fecha_ingreso").ToString("yyyy/MM/dd"),
+                                     puesto = item.Field<string>("puesto"),
+                                     departamento = item.Field<string>("departamento"),                                
                                  }
                                ).ToList();
             }

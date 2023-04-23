@@ -32,7 +32,7 @@ namespace Models.DTO
         public int id_usuario { get; set; }
         public string nomina { get; set; }
         public string fecha_ingreso { get; set; }
-        public string nombre_puesto { get; set; }
-        public string nombre_departamento { get; set; }
+        public string puesto { get; set; }
+        public string departamento { get; set; }
     }
 }
