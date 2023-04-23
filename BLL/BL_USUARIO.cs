@@ -164,7 +164,7 @@ namespace BLL
                 };
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spCrearUsuario", dpParametros);
-                lstMensaje.Add("00"); // TODO: ¿Por qué es "00"?
+                lstMensaje.Add("00");
                 lstMensaje.Add("Información Guardada");
             }
             catch (SqlException e)
