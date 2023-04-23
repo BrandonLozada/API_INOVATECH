@@ -22,7 +22,7 @@ namespace Models.DTO
     }
 
     public class DomicilioRepDTO {
-        public string id_usuario { get; set; }
+        public int id_usuario { get; set; }
         public string calle { get; set; }
         public string? numero_interior { get; set; }
         public string? numero_exterior { get; set; }
