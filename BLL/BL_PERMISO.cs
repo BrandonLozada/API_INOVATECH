@@ -53,7 +53,7 @@ namespace BLL
                 {
                     P_IdUsuarioSolicitante = P_id_usuario_solicitante,
                     P_IdPermiso = P_id_permiso,
-                    P_Dias = diffDias.Days,
+                    P_Dias = diffDias.Days + 1,
                     P_Fechainicio = P_fecha_inicio,
                     P_FechaFin = P_fecha_fin
                 };
