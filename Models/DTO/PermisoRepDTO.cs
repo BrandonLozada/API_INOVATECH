@@ -6,12 +6,6 @@ using System.Threading.Tasks;
 
 namespace Models.DTO
 {
-    public class PermisoRepDTO
-    {
-        public int id_permiso { get; set; }
-        public string nombre { get; set; }
-    }
-
     public class PermisoDTO {
         public int id_usuario_solicitante { get; set; }
         public int id_permiso { get; set; }

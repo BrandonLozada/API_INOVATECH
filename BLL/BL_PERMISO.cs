@@ -12,33 +12,6 @@ namespace BLL
 {
     public class BL_PERMISO
     {
-        public static List<PermisoRepDTO> ConsultaPermisos(string P_Cadena)
-        {
-            List<PermisoRepDTO> lstPermisoRep = new List<PermisoRepDTO>();
-            DataTable Dt = new DataTable();
-
-            var dpParametros = new
-            {
-                
-            };
-
-            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spPermisos", dpParametros);
-
-
-            if (Dt.Rows.Count > 0)
-            {
-                lstPermisoRep = (from item in Dt.AsEnumerable()
-                                      select new PermisoRepDTO
-                                      {
-                                          id_permiso = item.Field<int>("id_permiso"),
-                                          nombre = item.Field<string>("nombre")
-                                      }
-                               ).ToList();
-            }
-
-            return lstPermisoRep;
-        }
-
         public static List<string> InsertarSolicitudPermiso(string P_Cadena, int P_id_usuario_solicitante, int P_id_permiso, string P_fecha_inicio, string P_fecha_fin)
         {
             List<string> lstMensaje = new List<string>();
@@ -59,7 +32,7 @@ namespace BLL
                 };
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spSolicitarPermiso", dpParametros);
-                lstMensaje.Add("00"); // TODO: ¿Por qué es "00"?
+                lstMensaje.Add("00");
                 lstMensaje.Add("Información Guardada");
             }
             catch (SqlException e)
