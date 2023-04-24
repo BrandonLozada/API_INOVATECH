@@ -20,7 +20,7 @@ namespace API_INOVATECH.Controllers
         [Route("GuardarPermiso")]
         public IActionResult GuardarPermiso([FromBody] PermisoDTO Permiso)
         {
-            List<string> lstDatos = BL_PERMISO.InsertarSolicitudPermiso(Cadena, Permiso.id_usuario_solicitante, Permiso.id_permiso, Permiso.fecha_inicio, Permiso.fecha_fin);
+            List<string> lstDatos = BL_PERMISO.InsertarSolicitudPermiso(Cadena, Permiso.id_usuario_solicitante, Permiso.id_permiso, Permiso.motivo, Permiso.fecha_inicio, Permiso.fecha_fin, Permiso.id_usuario_autorizador);
 
             if (lstDatos[0] == "00")
             {

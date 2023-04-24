@@ -12,7 +12,7 @@ namespace BLL
 {
     public class BL_PERMISO
     {
-        public static List<string> InsertarSolicitudPermiso(string P_Cadena, int P_id_usuario_solicitante, int P_id_permiso, string P_fecha_inicio, string P_fecha_fin)
+        public static List<string> InsertarSolicitudPermiso(string P_Cadena, int P_id_usuario_solicitante, int P_id_permiso, string P_motivoE, string P_fecha_inicio, string P_fecha_fin, int P_id_usuario_autorizador)
         {
             List<string> lstMensaje = new List<string>();
             DateTime fechaini = Convert.ToDateTime(P_fecha_inicio);
@@ -24,11 +24,12 @@ namespace BLL
             {
                 var dpParametros = new
                 {
-                    P_IdUsuarioSolicitante = P_id_usuario_solicitante,
-                    P_IdPermiso = P_id_permiso,
-                    P_Dias = diffDias.Days + 1,
-                    P_Fechainicio = P_fecha_inicio,
-                    P_FechaFin = P_fecha_fin
+                    @P_IdUsuarioSolicitante = P_id_usuario_solicitante,
+                    @P_IdPermiso = P_id_permiso,
+                    @P_motivo = P_motivoE,
+                    @P_Fechainicio = P_fecha_inicio,
+                    @P_FechaFin = P_fecha_fin,
+                    @P_idUsuarioAutorizador = P_id_usuario_autorizador
                 };
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spSolicitarPermiso", dpParametros);
