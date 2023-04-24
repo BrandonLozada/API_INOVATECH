@@ -41,5 +41,22 @@ namespace API_INOVATECH.Controllers
             }
 
         }
+
+        [HttpPut]
+        [Route("ActualizarPermiso/{IdSolicitud}")]
+        public IActionResult ActualizarPermiso(int IdSolicitud, [FromBody] PermisoActDTO Permiso)
+        {
+            List<string> lstDatos = BL_PERMISO.ActualizarSolicitudPermiso(Cadena, IdSolicitud, Permiso.estado, Permiso.observaciones, Permiso.id_usuario_autorizador);
+
+            if (lstDatos[0] == "00")
+            {
+                return Ok(new { Value = lstDatos[1] });
+            }
+            else
+            {
+                return BadRequest(new { Value = lstDatos[1] });
+            }
+
+        }
     }
 }

@@ -81,5 +81,33 @@ namespace BLL
             }
             return lstPermisoRep;
         }
+
+        public static List<string> ActualizarSolicitudPermiso(string P_Cadena, int P_idSolicitud, int P_estado, string P_observaciones, int P_id_usuario_autorizador)
+        {
+            List<string> lstMensaje = new List<string>();
+            try
+            {
+                var dpParametros = new
+                {
+                    P_idSolicitud_permiso = P_idSolicitud,
+                    P_Estado = P_estado,
+                    P_Observaciones = P_observaciones,
+                    P_idUsuario_autorizador = P_id_usuario_autorizador
+                };
+
+                Contexto.Procedimiento_StoreDB(P_Cadena, "spAutorizarPermiso", dpParametros);
+                lstMensaje.Add("00");
+                lstMensaje.Add("Solicitud Actualizada");
+
+
+            }
+            catch (SqlException e)
+            {
+                lstMensaje.Add("14");
+                lstMensaje.Add(e.Message);
+            }
+
+            return lstMensaje;
+        }
     }
 }

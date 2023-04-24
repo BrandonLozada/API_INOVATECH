@@ -29,4 +29,10 @@ namespace Models.DTO
         public string nombre_usuario_solicitante { get; set; }
         public string nombre_usuario_autorizador { get; set; }
     }
+
+    public class PermisoActDTO {
+        public int estado { get; set; } 
+        public string? observaciones { get; set; }
+        public int id_usuario_autorizador { get; set; }
+    }
 }
