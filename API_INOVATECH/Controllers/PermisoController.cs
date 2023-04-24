@@ -16,6 +16,15 @@ namespace API_INOVATECH.Controllers
             Cadena = Config.GetConnectionString("PROD");
         }
 
+        [HttpGet]
+        [Route("ListarPermiso")]
+        public IActionResult ListarPermiso()
+        {
+            List<PermisoRepDTO> lstPermisoRep = BL_PERMISO.ListarSolicitudesPermisos(Cadena);
+
+            return Ok(new { Value = lstPermisoRep });
+        }
+
         [HttpPost]
         [Route("GuardarPermiso")]
         public IActionResult GuardarPermiso([FromBody] PermisoDTO Permiso)

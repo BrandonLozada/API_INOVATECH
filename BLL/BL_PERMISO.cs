@@ -27,6 +27,7 @@ namespace BLL
                     @P_IdUsuarioSolicitante = P_id_usuario_solicitante,
                     @P_IdPermiso = P_id_permiso,
                     @P_motivo = P_motivoE,
+                    @P_dias = diffDias.Days + 1,
                     @P_Fechainicio = P_fecha_inicio,
                     @P_FechaFin = P_fecha_fin,
                     @P_idUsuarioAutorizador = P_id_usuario_autorizador
@@ -43,6 +44,42 @@ namespace BLL
             }
 
             return lstMensaje;
+        }
+
+        public static List<PermisoRepDTO> ListarSolicitudesPermisos(string P_Cadena)
+        {
+            List<PermisoRepDTO> lstPermisoRep = new List<PermisoRepDTO>();
+            DataTable Dt = new DataTable();
+
+            var dpParametros = new
+            {
+    
+            };
+
+            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spListarPermisos", dpParametros);
+
+            if (Dt.Rows.Count > 0)
+            {
+                lstPermisoRep = (from item in Dt.AsEnumerable()
+                                 select new PermisoRepDTO
+                                 {
+                                     id_solicitud_permiso = item.Field<int>("id_solicitud_permiso"),
+                                     id_permiso = item.Field<int>("id_permiso"),
+                                     dias = item.Field<int>("dias"),
+                                     fecha_inicio = item.Field<DateTime>("fecha_inicio").ToString("yyyy/MM/dd"),
+                                     fecha_fin = item.Field<DateTime>("fecha_fin").ToString("yyyy/MM/dd"),
+                                     fecha_solicitud = item.Field<DateTime>("fecha_solicitud").ToString("yyyy/MM/dd"),
+                                     fecha_resolucion = item.Field<DateTime>("fecha_resolucion").ToString("yyyy/MM/dd"),
+                                     estado = item.Field<string>("estado"),
+                                     motivo = item.Field<string>("motivo"),
+                                     observaciones = item.Field<string?>("observaciones"),
+                                     nombre_usuario_solicitante = item.Field<string>("Usuario_solicitante"),
+                                     nombre_usuario_autorizador = item.Field<string>("Usuario_autorizador")
+                                 }
+                               ).ToList();
+
+            }
+            return lstPermisoRep;
         }
     }
 }
