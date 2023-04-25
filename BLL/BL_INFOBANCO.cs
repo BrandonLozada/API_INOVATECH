@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BLL {
     public class BL_INFOBANCO {
-        public static List<string> InsertarInfoBanco(string P_Cadena, int P_IdUsuarioE, string P_BancoE, string P_TitularE, string P_NumCuentaE, string P_ClabeE, string P_TarjetaE)
+        public static List<string> InsertarInfoBanco(string P_Cadena, int P_IdUsuarioE, string P_BancoE, string P_TitularE, string P_NumCuentaE, string P_ClabeE, string P_TarjetaE, int P_EsActivo)
         {
             List<string> lstMensaje = new List<string>();
             try
@@ -20,7 +20,8 @@ namespace BLL {
                     P_Titular = P_TitularE,
                     P_Num_cuenta = P_NumCuentaE,
                     P_Clabe = P_ClabeE,
-                    P_Tarjeta = P_TarjetaE
+                    P_Tarjeta = P_TarjetaE,
+                    P_EsActiva = P_EsActivo
                 };
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spCrearInfoBancaria", dpParametros);

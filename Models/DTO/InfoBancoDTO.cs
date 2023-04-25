@@ -12,5 +12,6 @@ namespace Models.DTO {
         public string num_cuenta { get; set; }
         public string clabe { get; set; }
         public string tarjeta { get; set; }
+        public int es_activo { get; set; } 
     }
 }

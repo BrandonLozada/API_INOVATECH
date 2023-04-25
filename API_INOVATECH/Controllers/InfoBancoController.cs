@@ -16,7 +16,7 @@ namespace API_INOVATECH.Controllers {
         [Route("CrearInfoBancaria")]
         public IActionResult GuardarInfoBancaria([FromBody] InfoBancoDTO InfoBanco)
         {
-            List<string> lstDatos = BL_INFOBANCO.InsertarInfoBanco(Cadena, InfoBanco.id_usuario, InfoBanco.banco, InfoBanco.titular, InfoBanco.num_cuenta, InfoBanco.clabe, InfoBanco.tarjeta);
+            List<string> lstDatos = BL_INFOBANCO.InsertarInfoBanco(Cadena, InfoBanco.id_usuario, InfoBanco.banco, InfoBanco.titular, InfoBanco.num_cuenta, InfoBanco.clabe, InfoBanco.tarjeta, InfoBanco.es_activo);
 
             if (lstDatos[0] == "00")
             {
