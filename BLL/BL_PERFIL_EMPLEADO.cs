@@ -14,7 +14,9 @@ namespace BLL
 {
     public class BL_PERFIL_EMPLEADO
     {
-        public static List<string> InsertarPerfilEmpleado(string P_Cadena, int P_IdUsuarioE, string P_NominaE, string P_FechaIngresoE, string P_FechaEgresoE, int P_IdPuestoE, int P_IdDepartamentoE)
+        public static List<string> InsertarPerfilEmpleado(string P_Cadena, int P_IdUsuarioE, string P_NominaE, string P_CURPE, string P_RFCE, 
+                                                          string P_NSSE, string P_infonavitE, decimal P_salarioE, int P_estado_civilE,
+                                                          string P_FechaIngresoE, string P_FechaEgresoE, int P_IdPuestoE, int P_IdDepartamentoE)
         {
             List<string> lstMensaje = new List<string>();
             try
@@ -23,6 +25,12 @@ namespace BLL
                 {
                     P_IdUsuario = P_IdUsuarioE,
                     P_Nomina = P_NominaE,
+                    P_CURP = P_CURPE,
+                    P_RFC = P_RFCE,
+                    P_NSS = P_NSSE,
+                    P_Infonavit = P_infonavitE,
+                    P_Salario = P_salarioE,
+                    P_Estado_civil = P_estado_civilE,
                     P_FechaIngreso = P_FechaIngresoE,
                     P_FechaEgreso = P_FechaEgresoE,
                     P_IdPuesto = P_IdPuestoE,

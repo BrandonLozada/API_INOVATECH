@@ -20,7 +20,9 @@ namespace API_INOVATECH.Controllers
         [Route("CrearPerfilEmpleado")]
         public IActionResult GuardarPerfilEmpleado([FromBody] PerfilEmpleadoDTO PerfilEmpleado)
         {
-            List<string> lstDatos = BL_PERFIL_EMPLEADO.InsertarPerfilEmpleado(Cadena, PerfilEmpleado.id_usuario, PerfilEmpleado.nomina, PerfilEmpleado.fecha_ingreso, PerfilEmpleado.fecha_egreso, PerfilEmpleado.id_puesto, PerfilEmpleado.id_departamento);
+            List<string> lstDatos = BL_PERFIL_EMPLEADO.InsertarPerfilEmpleado(Cadena, PerfilEmpleado.id_usuario, PerfilEmpleado.nomina, PerfilEmpleado.CURP, PerfilEmpleado.RFC, 
+                                                                              PerfilEmpleado.NSS, PerfilEmpleado.infonavit, PerfilEmpleado.salario, PerfilEmpleado.estado_civil,
+                                                                              PerfilEmpleado.fecha_ingreso, PerfilEmpleado.fecha_egreso, PerfilEmpleado.id_puesto, PerfilEmpleado.id_departamento);
 
             if (lstDatos[0] == "00")
             {
