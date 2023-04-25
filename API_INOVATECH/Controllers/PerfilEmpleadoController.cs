@@ -40,5 +40,22 @@ namespace API_INOVATECH.Controllers
 
             return Ok(new { Value = lstPerfilEmpleado });
         }
+
+        [HttpPut]
+        [Route("ActualizarDiasDescanso/{IdUsuario}")]
+        public IActionResult ActualizarPermiso(int IdUsuario)
+        {
+            List<string> lstDatos = BL_PERFIL_EMPLEADO.ActualizarDiasDescanso(Cadena, IdUsuario);
+
+            if (lstDatos[0] == "00")
+            {
+                return Ok(new { Value = lstDatos[1] });
+            }
+            else
+            {
+                return BadRequest(new { Value = lstDatos[1] });
+            }
+
+        }
     }
 }

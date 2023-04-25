@@ -71,5 +71,29 @@ namespace BLL
 
             return lstPerfilEmpleado;
         }
+
+        public static List<string> ActualizarDiasDescanso(string P_Cadena, int P_idUsuario)
+        {
+            List<string> lstMensaje = new List<string>();
+            try
+            {
+                var dpParametros = new
+                {
+                    idUsuario = P_idUsuario
+                };
+
+                Contexto.Procedimiento_StoreDB(P_Cadena, "spDiasVacaciones", dpParametros);
+                lstMensaje.Add("00");
+                lstMensaje.Add("Solicitud Actualizada");
+
+            }
+            catch (SqlException e)
+            {
+                lstMensaje.Add("14");
+                lstMensaje.Add(e.Message);
+            }
+
+            return lstMensaje;
+        }
     }
 }
