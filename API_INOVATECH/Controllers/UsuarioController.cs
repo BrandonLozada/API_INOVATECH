@@ -16,45 +16,6 @@ namespace API_INOVATECH.Controllers
             Cadena = Config.GetConnectionString("PROD");
         }
 
-        // TODO: En los EndPoints donde obtengo a un solo usuario por medio de un ID, la respuesta tiene que ser de otro tipo que no sea "List" (Pref Objeto). 
-        //       Esto es para mejor manipulación en el Front y a la hora de la función Modificar enviar como "Props" a otra página.
-        [HttpGet]
-        [Route("ListarPerfil/{IdUsuario}")]
-        public IActionResult ListarPerfil(int IdUsuario)
-        {
-            List<UsuarioBioDTO> lstUsuarioRep = BL_USUARIO.ConsultaPerfil(Cadena, IdUsuario);
-
-            return Ok(new { Value = lstUsuarioRep });
-        }
-
-        // TODO: Corregir este EndPoint, verificar la finalidad para Front.
-        //[HttpGet]
-        //[Route("ListarTodo")]
-        //public IActionResult ListarTodo()
-        //{
-        //    List<UsuarioGenDTO> lstUsuarioRep = BL_USUARIO.ConsultaTodo(Cadena);
-
-        //    return Ok(new { Value = lstUsuarioRep });
-        //}
-
-        [HttpGet]
-        [Route("ListarUsuario")]
-        public IActionResult ListarUsuario()
-        {
-            List<UsuarioRepDTO> lstUsuarioRep = BL_USUARIO.ConsultaGeneral(Cadena);
-
-            return Ok(new { Value = lstUsuarioRep });
-        }
-
-        [HttpGet]
-        [Route("ListarNombre/{Nombre}")]
-        public IActionResult ListarNombre(string Nombre)
-        {
-            List<UsuarioRepDTO> lstUsuarioRep = BL_USUARIO.ConsultaXNombre(Cadena, Nombre);
-
-            return Ok(new { Value = lstUsuarioRep });
-        }
-
         [HttpPost]
         [Route("GuardarUsuario")]
         public IActionResult GuardarUsuario([FromBody] UsuarioDTO Usuario)
@@ -89,7 +50,6 @@ namespace API_INOVATECH.Controllers
 
         }
 
-        //Checar el Post y cambiar para que solo sea una baja logica
         [HttpPost]
         [Route("EliminarUsuario/{IdUsuario}")]
         public IActionResult EliminarUsuario(int IdUsuario)
@@ -106,5 +66,55 @@ namespace API_INOVATECH.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("IdentificarUsuario")]
+        public IActionResult IdentificarUsuario([FromBody] UsuarioInicioSesionDTO Usuario2)
+        {
+            List<UsuarioIdentidadDTO> lstUsuarioIdentificado = BL_USUARIO.IdentificarUsuario(Cadena, Usuario2.correo, Usuario2.contrasenia);
+
+            return Ok(new { Value = lstUsuarioIdentificado });
+
+        }
+
+        // TODO: En los EndPoints donde obtengo a un solo usuario por medio de un ID, la respuesta tiene que ser de otro tipo que no sea "List" (Pref Objeto). 
+        //       Esto es para mejor manipulación en el Front y a la hora de la función Modificar enviar como "Props" a otra página.
+        [HttpGet]
+        [Route("ListarPerfil/{IdUsuario}")]
+        public IActionResult ListarPerfil(int IdUsuario)
+        {
+            List<UsuarioBioDTO> lstUsuarioRep = BL_USUARIO.ConsultaPerfil(Cadena, IdUsuario);
+
+            return Ok(new { Value = lstUsuarioRep });
+        }
+
+        [HttpGet]
+        [Route("ListarUsuario")]
+        public IActionResult ListarUsuario()
+        {
+            List<UsuarioRepDTO> lstUsuarioRep = BL_USUARIO.ConsultaGeneral(Cadena);
+
+            return Ok(new { Value = lstUsuarioRep });
+        }
+
+        // TODO: Corregir este EndPoint, verificar la finalidad para Front.
+        //[HttpGet]
+        //[Route("ListarTodo")]
+        //public IActionResult ListarTodo()
+        //{
+        //    List<UsuarioGenDTO> lstUsuarioRep = BL_USUARIO.ConsultaTodo(Cadena);
+
+        //    return Ok(new { Value = lstUsuarioRep });
+        //}
+
+        // TODO: Este EndPoint sí funciona pero por ahora no es necesario.
+        //[HttpGet]
+        //[Route("ListarNombre/{Nombre}")]
+        //public IActionResult ListarNombre(string Nombre)
+        //{
+        //    List<UsuarioRepDTO> lstUsuarioRep = BL_USUARIO.ConsultaXNombre(Cadena, Nombre);
+
+        //    return Ok(new { Value = lstUsuarioRep });
+        //}
     }
 }

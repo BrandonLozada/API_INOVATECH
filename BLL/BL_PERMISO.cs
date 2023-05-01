@@ -35,7 +35,7 @@ namespace BLL
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spSolicitarPermiso", dpParametros);
                 lstMensaje.Add("00");
-                lstMensaje.Add("Información Guardada");
+                lstMensaje.Add("Solicitud Creada");
             }
             catch (SqlException e)
             {
