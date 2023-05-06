@@ -18,6 +18,11 @@ namespace Models.DTO
         public string correo { get; set; }
         public bool es_activo { get; set; }
         public int id_rol { get; set; }
+
+        public static implicit operator Dictionary<object, object>(UsuarioIdentidadDTO v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class UsuarioInicioSesionDTO

@@ -1,11 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics.CodeAnalysis;
 using Models;
 using BLL;
 using Models.DTO;
 
+
 namespace API_INOVATECH.Controllers
 {
+    [EnableCors("ReglasCors")]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
@@ -96,25 +102,5 @@ namespace API_INOVATECH.Controllers
 
             return Ok(new { Value = lstUsuarioRep });
         }
-
-        // TODO: Corregir este EndPoint, verificar la finalidad para Front.
-        //[HttpGet]
-        //[Route("ListarTodo")]
-        //public IActionResult ListarTodo()
-        //{
-        //    List<UsuarioGenDTO> lstUsuarioRep = BL_USUARIO.ConsultaTodo(Cadena);
-
-        //    return Ok(new { Value = lstUsuarioRep });
-        //}
-
-        // TODO: Este EndPoint sí funciona pero por ahora no es necesario.
-        //[HttpGet]
-        //[Route("ListarNombre/{Nombre}")]
-        //public IActionResult ListarNombre(string Nombre)
-        //{
-        //    List<UsuarioRepDTO> lstUsuarioRep = BL_USUARIO.ConsultaXNombre(Cadena, Nombre);
-
-        //    return Ok(new { Value = lstUsuarioRep });
-        //}
     }
 }
