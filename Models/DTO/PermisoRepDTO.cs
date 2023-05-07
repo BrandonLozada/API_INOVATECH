@@ -17,7 +17,7 @@ namespace Models.DTO
 
     public class PermisoRepDTO {
         public int id_solicitud_permiso { get; set; }
-        public int id_permiso { get; set; }
+        public string tipo_permiso { get; set; }
         public int dias { get; set; }
         public string fecha_inicio { get; set; }
         public string fecha_fin { get; set; }

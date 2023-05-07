@@ -49,7 +49,7 @@ namespace API_INOVATECH.Controllers
 
                 string tokencreado = tokenHandler.WriteToken(tokenConfig);
 
-                return StatusCode(StatusCodes.Status200OK, new { accessToken = tokencreado, Value = lstValidacion, userIdentity = lstValidacion[0] });
+                return StatusCode(StatusCodes.Status200OK, new { accessToken = tokencreado, Value = lstValidacion });
 
             }
             else

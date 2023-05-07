@@ -16,15 +16,6 @@ namespace API_INOVATECH.Controllers
             Cadena = Config.GetConnectionString("PROD");
         }
 
-        [HttpGet]
-        [Route("ListarPermiso")]
-        public IActionResult ListarPermiso()
-        {
-            List<PermisoRepDTO> lstPermisoRep = BL_PERMISO.ListarSolicitudesPermisos(Cadena);
-
-            return Ok(new { Value = lstPermisoRep });
-        }
-
         [HttpPost]
         [Route("GuardarPermiso")]
         public IActionResult GuardarPermiso([FromBody] PermisoDTO Permiso)
@@ -40,8 +31,8 @@ namespace API_INOVATECH.Controllers
                 return BadRequest(new { Value = lstDatos[1] });
             }
 
-        }
-
+        } 
+        
         [HttpPut]
         [Route("ActualizarPermiso/{IdSolicitud}")]
         public IActionResult ActualizarPermiso(int IdSolicitud, [FromBody] PermisoActDTO Permiso)
@@ -58,5 +49,25 @@ namespace API_INOVATECH.Controllers
             }
 
         }
+
+        [HttpGet]
+        [Route("ConsultarPermiso/{IdSolicitud}")]
+        public IActionResult ConsultarPermiso(int IdSolicitud)
+        {
+            List<PermisoRepDTO> lstPermisoRep = BL_PERMISO.ConsultarSolicitudPermiso(Cadena, IdSolicitud);
+
+            return Ok(new { Value = lstPermisoRep });
+        }
+
+        [HttpGet]
+        [Route("ListarPermiso")]
+        public IActionResult ListarPermiso()
+        {
+            List<PermisoRepDTO> lstPermisoRep = BL_PERMISO.ListarSolicitudesPermisos(Cadena);
+
+            return Ok(new { Value = lstPermisoRep });
+        }
+
+        
     }
 }

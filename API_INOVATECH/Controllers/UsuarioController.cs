@@ -73,16 +73,6 @@ namespace API_INOVATECH.Controllers
 
         }
 
-        [HttpPost]
-        [Route("IdentificarUsuario")]
-        public IActionResult IdentificarUsuario([FromBody] UsuarioInicioSesionDTO Usuario2)
-        {
-            List<UsuarioIdentidadDTO> lstUsuarioIdentificado = BL_USUARIO.IdentificarUsuario(Cadena, Usuario2.correo, Usuario2.contrasenia);
-
-            return Ok(new { Value = lstUsuarioIdentificado });
-
-        }
-
         // TODO: En los EndPoints donde obtengo a un solo usuario por medio de un ID, la respuesta tiene que ser de otro tipo que no sea "List" (Pref Objeto). 
         //       Esto es para mejor manipulación en el Front y a la hora de la función Modificar enviar como "Props" a otra página.
         [HttpGet]

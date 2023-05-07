@@ -46,6 +46,69 @@ namespace BLL
             return lstMensaje;
         }
 
+        public static List<string> ActualizarSolicitudPermiso(string P_Cadena, int P_idSolicitud, int P_estado, string P_observaciones, int P_id_usuario_autorizador)
+        {
+            List<string> lstMensaje = new List<string>();
+            try
+            {
+                var dpParametros = new
+                {
+                    P_idSolicitud_permiso = P_idSolicitud,
+                    P_Estado = P_estado,
+                    P_Observaciones = P_observaciones,
+                    P_idUsuario_autorizador = P_id_usuario_autorizador
+                };
+
+                Contexto.Procedimiento_StoreDB(P_Cadena, "spAutorizarPermiso", dpParametros);
+                lstMensaje.Add("00");
+                lstMensaje.Add("Solicitud Actualizada");
+
+            }
+            catch (SqlException e)
+            {
+                lstMensaje.Add("14");
+                lstMensaje.Add(e.Message);
+            }
+
+            return lstMensaje;
+        }
+
+        public static List<PermisoRepDTO> ConsultarSolicitudPermiso(string P_Cadena, int IdSolicitud)
+        {
+            List<PermisoRepDTO> lstPermisoRep = new List<PermisoRepDTO>();
+            DataTable Dt = new DataTable();
+
+            var dpParametros = new
+            {
+                P_IdSolicitud = IdSolicitud
+            };
+
+            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spConsultarSolicitudPermiso", dpParametros);
+
+            if (Dt.Rows.Count > 0)
+            {
+                lstPermisoRep = (from item in Dt.AsEnumerable()
+                                 select new PermisoRepDTO
+                                 {
+                                     id_solicitud_permiso = item.Field<int>("id_solicitud_permiso"),
+                                     tipo_permiso = item.Field<string>("tipo_permiso"),
+                                     dias = item.Field<int>("dias"),
+                                     fecha_inicio = item.Field<DateTime>("fecha_inicio").ToString("yyyy/MM/dd"),
+                                     fecha_fin = item.Field<DateTime>("fecha_fin").ToString("yyyy/MM/dd"), //fecha_solicitud = item.Field<string>("fecha_solicitud"), 
+                                     fecha_solicitud = item.Field<DateTime>("fecha_solicitud").ToString(),
+                                     fecha_resolucion = item.Field<DateTime>("fecha_resolucion").ToString("yyyy/MM/dd"),
+                                     estado = item.Field<string>("estado"),
+                                     motivo = item.Field<string>("motivo"),
+                                     observaciones = item.Field<string?>("observaciones"),
+                                     nombre_usuario_solicitante = item.Field<string>("Usuario_solicitante"),
+                                     nombre_usuario_autorizador = item.Field<string>("Usuario_autorizador")
+                                 }
+                               ).ToList();
+
+            }
+            return lstPermisoRep;
+        }
+
         public static List<PermisoRepDTO> ListarSolicitudesPermisos(string P_Cadena)
         {
             List<PermisoRepDTO> lstPermisoRep = new List<PermisoRepDTO>();
@@ -64,11 +127,11 @@ namespace BLL
                                  select new PermisoRepDTO
                                  {
                                      id_solicitud_permiso = item.Field<int>("id_solicitud_permiso"),
-                                     id_permiso = item.Field<int>("id_permiso"),
+                                     tipo_permiso = item.Field<string>("tipo_permiso"),
                                      dias = item.Field<int>("dias"),
                                      fecha_inicio = item.Field<DateTime>("fecha_inicio").ToString("yyyy/MM/dd"),
-                                     fecha_fin = item.Field<DateTime>("fecha_fin").ToString("yyyy/MM/dd"),
-                                     fecha_solicitud = item.Field<DateTime>("fecha_solicitud").ToString("yyyy/MM/dd"),
+                                     fecha_fin = item.Field<DateTime>("fecha_fin").ToString("yyyy/MM/dd"), //fecha_solicitud = item.Field<string>("fecha_solicitud"), 
+                                     fecha_solicitud = item.Field<DateTime>("fecha_solicitud").ToString(),
                                      fecha_resolucion = item.Field<DateTime>("fecha_resolucion").ToString("yyyy/MM/dd"),
                                      estado = item.Field<string>("estado"),
                                      motivo = item.Field<string>("motivo"),
@@ -80,34 +143,6 @@ namespace BLL
 
             }
             return lstPermisoRep;
-        }
-
-        public static List<string> ActualizarSolicitudPermiso(string P_Cadena, int P_idSolicitud, int P_estado, string P_observaciones, int P_id_usuario_autorizador)
-        {
-            List<string> lstMensaje = new List<string>();
-            try
-            {
-                var dpParametros = new
-                {
-                    P_idSolicitud_permiso = P_idSolicitud,
-                    P_Estado = P_estado,
-                    P_Observaciones = P_observaciones,
-                    P_idUsuario_autorizador = P_id_usuario_autorizador
-                };
-
-                Contexto.Procedimiento_StoreDB(P_Cadena, "spAutorizarPermiso", dpParametros);
-                lstMensaje.Add("00");
-                lstMensaje.Add("Solicitud Actualizada");
-
-
-            }
-            catch (SqlException e)
-            {
-                lstMensaje.Add("14");
-                lstMensaje.Add(e.Message);
-            }
-
-            return lstMensaje;
         }
     }
 }
