@@ -40,7 +40,8 @@ namespace API_INOVATECH.Controllers
                     Subject = claims,
                     // TODO: Agregar más tiempo al token.
                     //Expires = DateTime.UtcNow.AddMinutes(5),
-                    Expires = DateTime.UtcNow.AddHours(1),
+                    //Expires = DateTime.UtcNow.AddHours(5),
+                    Expires = DateTime.UtcNow.AddDays(5),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature)
                 };
 
