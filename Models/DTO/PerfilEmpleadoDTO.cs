@@ -34,6 +34,7 @@ namespace Models.DTO
         public string contrasenia { get; set; }
     }
 
+    // TODO: Modificar y agregar más elementos para mostrarlos en pantalla.
     public class PerfilEmpleadoBioDTO {
         public int id_usuario { get; set; }
         public string nomina { get; set; }
