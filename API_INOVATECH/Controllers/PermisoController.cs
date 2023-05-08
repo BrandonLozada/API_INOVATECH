@@ -33,7 +33,7 @@ namespace API_INOVATECH.Controllers
 
         } 
         
-        [HttpPut]
+        [HttpPatch]
         [Route("ActualizarPermiso/{IdSolicitud}")]
         public IActionResult ActualizarPermiso(int IdSolicitud, [FromBody] PermisoActDTO Permiso)
         {

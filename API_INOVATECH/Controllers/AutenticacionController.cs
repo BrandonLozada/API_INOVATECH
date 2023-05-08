@@ -54,7 +54,7 @@ namespace API_INOVATECH.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status401Unauthorized, new { accessToken = "", Value = lstValidacion });
+                return StatusCode(StatusCodes.Status401Unauthorized, new { accessToken = "" });
             }
 
         }

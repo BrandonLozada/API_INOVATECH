@@ -66,13 +66,20 @@ namespace BLL
             if (Dt.Rows.Count > 0)
             {
                 lstPerfilEmpleado = (from item in Dt.AsEnumerable()
-                                 select new PerfilEmpleadoBioDTO
-                                 {
-                                     id_usuario = item.Field<int>("id_usuario"),
-                                     nomina = item.Field<string>("nomina"),
-                                     fecha_ingreso = item.Field<DateTime>("fecha_ingreso").ToString("yyyy/MM/dd"),
-                                     puesto = item.Field<string>("puesto"),
-                                     departamento = item.Field<string>("departamento"),                                
+                                     select new PerfilEmpleadoBioDTO
+                                     {
+                                         id_usuario = item.Field<int>("id_usuario"),
+                                         CURP = item.Field<string>("CURP"),
+                                         RFC = item.Field<string>("RFC"),
+                                         NSS = item.Field<string>("NSS"),
+                                         infonavit = item.Field<string>("infonavit"),
+                                         salario = item.Field<decimal>("salario").ToString("#.00"),
+                                         estado_civil = item.Field<string>("estado_civil"),
+                                         dias_descanso = item.Field<int>("dias_descanso"),
+                                         nomina = item.Field<string>("nomina"),
+                                         fecha_ingreso = item.Field<DateTime>("fecha_ingreso").ToString("yyyy/MM/dd"),
+                                         puesto = item.Field<string>("puesto"),
+                                         departamento = item.Field<string>("departamento"),
                                  }
                                ).ToList();
             }
