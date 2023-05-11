@@ -7,9 +7,33 @@ using Models;
 using BLL;
 using Models.DTO;
 
+using System;
+using System.Collections.Generic;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
+
 
 namespace API_INOVATECH.Controllers
 {
+    public class ServicioSMS
+    {
+        public void EviarSMS(string numeroDestino)
+        {
+            var accountSid = "AC194e2870b28b91f22648c50c158cb8b8";
+            var authToken = "396b74310219c88c3df82f0e0fbccefe";
+            TwilioClient.Init(accountSid, authToken);
+
+            var messageOptions = new CreateMessageOptions(
+              new PhoneNumber(numeroDestino));
+            messageOptions.From = new PhoneNumber("+12708127824");
+            messageOptions.Body = "Se ha creado un nuevo en el sistema Inovatech";
+
+            var message = MessageResource.Create(messageOptions);
+            Console.WriteLine(message.Body);
+        }
+    }
+
     [EnableCors("ReglasCors")]
     [Authorize]
     [ApiController]
@@ -30,6 +54,8 @@ namespace API_INOVATECH.Controllers
 
             if (lstDatos[0] == "00")
             {
+                ServicioSMS _ServicioSms = new ServicioSMS();
+                _ServicioSms.EviarSMS("+528180251208");
                 return Ok(new { Value = lstDatos[1] });
             }
             else
