@@ -35,7 +35,7 @@ namespace BLL
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spCrearUsuario", dpParametros);
                 lstMensaje.Add("00");
-                lstMensaje.Add("Información Guardada");
+                lstMensaje.Add("Información guardada");
             }
             catch (SqlException e)
             {
@@ -68,7 +68,7 @@ namespace BLL
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spActualizarUsuario", dpParametros);
                 lstMensaje.Add("00");
-                lstMensaje.Add("Información Actualizada");
+                lstMensaje.Add("Información actualizada");
             }
             catch (SqlException e)
             {
@@ -91,7 +91,7 @@ namespace BLL
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spEliminarUsuario", dpParametros);
                 lstMensaje.Add("00");
-                lstMensaje.Add("Usuario Eliminado");
+                lstMensaje.Add("Usuario eliminado");
             }
             catch (SqlException e)
             {
@@ -114,7 +114,7 @@ namespace BLL
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spEliminarUsuarioFisico", dpParametros);
                 lstMensaje.Add("00");
-                lstMensaje.Add("Usuario Eliminado Físicamente");
+                lstMensaje.Add("Usuario eliminado físicamente");
             }
             catch (SqlException e)
             {
