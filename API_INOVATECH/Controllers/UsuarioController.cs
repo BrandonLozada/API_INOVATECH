@@ -9,7 +9,6 @@ using Models.DTO;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using Swashbuckle.AspNetCore.SwaggerGen;
-
 using System;
 using System.Collections.Generic;
 using Twilio;
@@ -30,7 +29,7 @@ namespace API_INOVATECH.Controllers
             var messageOptions = new CreateMessageOptions(
               new PhoneNumber(numeroDestino));
             messageOptions.From = new PhoneNumber("+12708127824");
-            messageOptions.Body = "Se ha creado un nuevo en el sistema Inovatech";
+            messageOptions.Body = "Se ha creado un nuevo usuario en el sistema Inovatech";
 
             var message = MessageResource.Create(messageOptions);
             Console.WriteLine(message.Body);
@@ -316,27 +315,27 @@ namespace API_INOVATECH.Controllers
 
         }
 
-        //[HttpDelete]
-        //[Route("EliminarUsuarioFisico/{IdUsuario}")]
-        //public IActionResult EliminarUsuarioFisico(int IdUsuario)
-        //{
-        //    if (!ValidarId(IdUsuario))
-        //    {
-        //        return BadRequest(new { Value = "Identificador del usuario inválido. No existe usuario con ese identificador" });
-        //    }
+        [HttpDelete]
+        [Route("EliminarUsuarioFisico/{IdUsuario}")]
+        public IActionResult EliminarUsuarioFisico(int IdUsuario)
+        {
+            if (!ValidarId(IdUsuario))
+            {
+                return BadRequest(new { Value = "Identificador del usuario inválido. No existe usuario con ese identificador" });
+            }
 
-        //    List<string> lstDatos = BL_USUARIO.EliminarUsuarioFisico(Cadena, IdUsuario);
+            List<string> lstDatos = BL_USUARIO.EliminarUsuarioFisico(Cadena, IdUsuario);
 
-        //    if (lstDatos[0] == "00")
-        //    {
-        //        return Ok(new { Value = lstDatos[1] });
-        //    }
-        //    else
-        //    {
-        //        return BadRequest(new { Value = lstDatos[1] });
-        //    }
+            if (lstDatos[0] == "00")
+            {
+                return Ok(new { Value = lstDatos[1] });
+            }
+            else
+            {
+                return BadRequest(new { Value = lstDatos[1] });
+            }
 
-        //}
+        }
 
         // TODO: En los EndPoints donde obtengo a un solo usuario por medio de un ID, la respuesta tiene que ser de otro tipo que no sea "List" (Pref Objeto). 
         //       Esto es para mejor manipulación en el Front y a la hora de la función Modificar enviar como "Props" a otra página.

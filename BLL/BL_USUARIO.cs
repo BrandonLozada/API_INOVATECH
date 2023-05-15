@@ -102,6 +102,29 @@ namespace BLL
             return lstMensaje;
         }
 
+        public static List<string> EliminarUsuarioFisico(string P_Cadena, int P_idUsuarioE)
+        {
+            List<string> lstMensaje = new List<string>();
+            try
+            {
+                var dpParametros = new
+                {
+                    P_IdUsuario = P_idUsuarioE
+                };
+
+                Contexto.Procedimiento_StoreDB(P_Cadena, "spEliminarUsuarioFisico", dpParametros);
+                lstMensaje.Add("00");
+                lstMensaje.Add("Usuario Eliminado Físicamente");
+            }
+            catch (SqlException e)
+            {
+                lstMensaje.Add("14");
+                lstMensaje.Add(e.Message);
+            }
+
+            return lstMensaje;
+        }
+
         public static List<UsuarioIdentidadDTO> IdentificarUsuario(string P_Cadena, string Correo, string Contrasenia)
         {
             List<UsuarioIdentidadDTO> lstUsuarioIdentificado = new List<UsuarioIdentidadDTO>();
