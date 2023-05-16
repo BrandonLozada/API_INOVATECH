@@ -14,15 +14,15 @@ namespace BLL
 {
     public class BL_TOKEN
     {
-        public static List<UsuarioIdentidadDTO> ObtenerToken(string P_Cadena, string Correo, string Contrasenia)
+        public static List<UsuarioIdentidadDTO> ObtenerToken(string P_Cadena, Usuario Usuario)
         {
             List<UsuarioIdentidadDTO> lstUsuarioIdentificado = new List<UsuarioIdentidadDTO>();
             DataTable Dt = new DataTable();
       
             var dpParametros = new
             {
-                P_Correo = Correo,
-                P_Contrasenia = Contrasenia,
+                P_Correo = Usuario.correo,
+                P_Contrasenia = Usuario.contrasenia,
             };
 
             Dt = Contexto.Funcion_StoreDB(P_Cadena, "spIdentificarUsuario", dpParametros);

@@ -26,7 +26,7 @@ namespace API_INOVATECH.Controllers
         [Route("Validar")]
         public IActionResult Validar([FromBody] Usuario request)
         {
-            List<UsuarioIdentidadDTO> lstValidacion = BL_TOKEN.ObtenerToken(Cadena, request.correo, request.contrasenia);
+            List<UsuarioIdentidadDTO> lstValidacion = BL_TOKEN.ObtenerToken(Cadena, request);
 
             if (lstValidacion.Count != 0)
             {
