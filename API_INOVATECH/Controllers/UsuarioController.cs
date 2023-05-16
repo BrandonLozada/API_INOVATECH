@@ -236,6 +236,20 @@ namespace API_INOVATECH.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("ConsultarUsuario/{IdUsuario}")]
+        public IActionResult ConsultarUsuario(int IdUsuario)
+        {
+            if (!ValidarId(IdUsuario))
+            {
+                return BadRequest(new { Value = "Identificador del usuario inválido. No existe usuario con ese identificador" });
+            }
+
+            List<UsuarioGenDTO> lstUsuarioRep = BL_USUARIO.ConsultarUsuario(Cadena, IdUsuario);
+
+            return Ok(new { Value = lstUsuarioRep });
+        }
+
         [HttpPut]
         [Route("ActualizarUsuario/{IdUsuario}")]
         public IActionResult ActualizarUsuario(int IdUsuario, [FromBody] UsuarioDTO Usuario)
@@ -293,16 +307,16 @@ namespace API_INOVATECH.Controllers
 
         }
 
-        [HttpPost]
-        [Route("EliminarUsuario/{IdUsuario}")]
-        public IActionResult EliminarUsuario(int IdUsuario)
+        [HttpDelete]
+        [Route("EliminarUsuarioFisico/{IdUsuario}")]
+        public IActionResult EliminarUsuarioFisico(int IdUsuario)
         {
             if (!ValidarId(IdUsuario))
             {
                 return BadRequest(new { Value = "Identificador del usuario inválido. No existe usuario con ese identificador" });
             }
 
-            List<string> lstDatos = BL_USUARIO.EliminarUsuario(Cadena, IdUsuario);
+            List<string> lstDatos = BL_USUARIO.EliminarUsuarioFisico(Cadena, IdUsuario);
 
             if (lstDatos[0] == "00")
             {
@@ -315,16 +329,16 @@ namespace API_INOVATECH.Controllers
 
         }
 
-        [HttpDelete]
-        [Route("EliminarUsuarioFisico/{IdUsuario}")]
-        public IActionResult EliminarUsuarioFisico(int IdUsuario)
+        [HttpPost]
+        [Route("EliminarUsuarioLogico/{IdUsuario}")]
+        public IActionResult EliminarUsuario(int IdUsuario)
         {
             if (!ValidarId(IdUsuario))
             {
                 return BadRequest(new { Value = "Identificador del usuario inválido. No existe usuario con ese identificador" });
             }
 
-            List<string> lstDatos = BL_USUARIO.EliminarUsuarioFisico(Cadena, IdUsuario);
+            List<string> lstDatos = BL_USUARIO.EliminarUsuario(Cadena, IdUsuario);
 
             if (lstDatos[0] == "00")
             {

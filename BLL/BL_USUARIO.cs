@@ -27,7 +27,7 @@ namespace BLL
                     P_FechaNacimiento = P_FechaNacimientoE,
                     P_Sexo = P_SexoE,
                     P_Celular = P_CelularE,
-                    P_Correo = P_CorreoE, // TODO: Investigar una funcionalidad de autenticación de dos factores para la API de Twilio.
+                    P_Correo = P_CorreoE,
                     P_Contrasenia = P_ContraseniaE,
                     P_EsActivo = P_EsActivoE,
                     P_IdRol = P_IdRolE
@@ -44,6 +44,42 @@ namespace BLL
             }
 
             return lstMensaje;
+        }
+
+        public static List<UsuarioGenDTO> ConsultarUsuario(string P_Cadena, int IdUsuario)
+        {
+            List<UsuarioGenDTO> lstUsuarioRep = new List<UsuarioGenDTO>();
+            DataTable Dt = new DataTable();
+
+            var dpParametros = new
+            {
+                P_IdUsuario = IdUsuario
+            };
+
+            Dt = Contexto.Funcion_StoreDB(P_Cadena, "spConsultarUsuarioAModificar", dpParametros);
+
+
+            if (Dt.Rows.Count > 0)
+            {
+                lstUsuarioRep = (from item in Dt.AsEnumerable()
+                                 select new UsuarioGenDTO
+                                 {
+                                     //id_usuario = item.Field<int>("id_usuario"),
+                                     nombre = item.Field<string>("nombre"),
+                                     primer_apellido = item.Field<string>("primer_apellido"),
+                                     segundo_apellido = item.Field<string>("segundo_apellido"),
+                                     fecha_nacimiento = item.Field<DateTime>("fecha_nacimiento").ToString("yyyy/MM/dd"),
+                                     sexo = item.Field<string>("sexo"),
+                                     celular = item.Field<string>("celular"),
+                                     correo = item.Field<string>("correo"),
+                                     contrasenia = item.Field<string>("contrasenia"),
+                                     es_activo = item.Field<int>("es_activo"),
+                                     id_rol = item.Field<int>("id_rol")
+                                 }
+                               ).ToList();
+            }
+
+            return lstUsuarioRep;
         }
 
         public static List<string> ActualizarUsuario(string P_Cadena, int P_idUsuarioE, string P_NombreE, string P_PrimerApellidoE, string P_SegundoApellidoE, string P_FechaNacimientoE, string P_SexoE, string P_CelularE, string P_CorreoE, string P_ContraseniaE, int P_EsActivoE, int P_IdRolE)
@@ -91,7 +127,7 @@ namespace BLL
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spEliminarUsuario", dpParametros);
                 lstMensaje.Add("00");
-                lstMensaje.Add("Usuario eliminado");
+                lstMensaje.Add("Usuario eliminado (lógico)");
             }
             catch (SqlException e)
             {
@@ -114,7 +150,7 @@ namespace BLL
 
                 Contexto.Procedimiento_StoreDB(P_Cadena, "spEliminarUsuarioFisico", dpParametros);
                 lstMensaje.Add("00");
-                lstMensaje.Add("Usuario eliminado físicamente");
+                lstMensaje.Add("Usuario eliminado (físico)");
             }
             catch (SqlException e)
             {
@@ -190,43 +226,6 @@ namespace BLL
 
             return lstUsuarioRep;
         }
-
-        //public static List<UsuarioGenDTO> ConsultaTodo(string P_Cadena)
-        //{
-        //    List<UsuarioGenDTO> lstUsuarioRep = new List<UsuarioGenDTO>();
-        //    DataTable Dt = new DataTable();
-
-        //    var dpParametros = new
-        //    {
-        //        P_Accion = 1
-        //    };
-
-        //    Dt = Contexto.Funcion_StoreDB(P_Cadena, "spConsultarUsuario", dpParametros);
-
-
-        //    if (Dt.Rows.Count > 0)
-        //    {
-        //        lstUsuarioRep = (from item in Dt.AsEnumerable()
-        //                         select new UsuarioGenDTO
-        //                         {
-        //                             id_usuario = item.Field<int>("id_usuario"),
-        //                             nombre = item.Field<string>("nombre"),
-        //                             primer_apellido = item.Field<string>("primer_apellido"),
-        //                             segundo_apellido = item.Field<string>("segundo_apellido"),
-        //                             fecha_nacimiento = Convert.ToString(item.Field<DateTime>("fecha_nacimiento")),
-        //                             sexo = item.Field<string>("sexo"),
-        //                             celular = item.Field<string>("celular"),
-        //                             correo = item.Field<string>("correo"),
-        //                             contrasenia = item.Field<string>("contrasenia"),
-        //                             nombre_rol = item.Field<string>("rol"),
-        //                             es_activo = item.Field<string>("activo"),
-        //                             fecha_registro = item.Field<string>("fecha_registro")
-        //                         }
-        //                       ).ToList();
-        //    }
-
-        //    return lstUsuarioRep;
-        //}
 
         public static List<UsuarioRepDTO> ConsultaGeneral(string P_Cadena)
         {
