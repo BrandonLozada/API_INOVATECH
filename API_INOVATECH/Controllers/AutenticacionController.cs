@@ -28,7 +28,7 @@ namespace API_INOVATECH.Controllers
         {
             List<UsuarioIdentidadDTO> lstValidacion = BL_TOKEN.ObtenerToken(Cadena, request.correo, request.contrasenia);
 
-            if (lstValidacion != null)
+            if (lstValidacion.Count != 0)
             {
                 var keyBytes = Encoding.ASCII.GetBytes(secretKey);
                 var claims = new ClaimsIdentity();
@@ -55,7 +55,7 @@ namespace API_INOVATECH.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status401Unauthorized, new { accessToken = "" });
+                return StatusCode(StatusCodes.Status401Unauthorized, new { Value = "No existe información relacionada con esas credenciales." });
             }
 
         }
