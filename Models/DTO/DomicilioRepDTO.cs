@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models.DTO
 {
-    public class DomicilioDTO
-    {
-        public int id_usuario  { get; set; }
+    public class DomicilioRepDTO {
+        public int id_usuario { get; set; }
         public string calle { get; set; }
         public string? numero_interior { get; set; }
         public string? numero_exterior { get; set; }

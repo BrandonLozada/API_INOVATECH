@@ -3,25 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace Models.DTO
 {
-    public class UsuarioDTO 
+    public class UsuarioIdentidadDTO
     {
-        [StringLength(40)]
+        public int id_usuario { get; set; }
         public string nombre { get; set; }
-        [StringLength(40, ErrorMessage = "El primer apellido no debe más de 40 caracteres.")]
         public string primer_apellido { get; set; }
-        [StringLength(40)]
         public string segundo_apellido { get; set; }
         public string fecha_nacimiento { get; set; }
-        public string sexo { get; set; } //public int id_genero { get; set; }
+        public string sexo { get; set; }
         public string celular { get; set; }
         public string correo { get; set; }
-        public string contrasenia { get; set; }
-        public int es_activo { get; set; }
+        public bool es_activo { get; set; }
         public int id_rol { get; set; }
     }
 }

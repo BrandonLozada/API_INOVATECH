@@ -351,8 +351,6 @@ namespace API_INOVATECH.Controllers
 
         }
 
-        // TODO: En los EndPoints donde obtengo a un solo usuario por medio de un ID, la respuesta tiene que ser de otro tipo que no sea "List" (Pref Objeto). 
-        //       Esto es para mejor manipulación en el Front y a la hora de la función Modificar enviar como "Props" a otra página.
         [HttpGet]
         [Route("ListarPerfil/{IdUsuario}")]
         public IActionResult ListarPerfil(int IdUsuario)
